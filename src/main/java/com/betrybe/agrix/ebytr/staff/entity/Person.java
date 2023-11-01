@@ -26,7 +26,14 @@ public class Person {
 
   private Role role;
 
-  public Person() {
+  /**
+   * Constructor.
+   */
+  public Person(Long id, String username, String password, Role role) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.role = role;
   }
 
   public Long getId() {
@@ -61,6 +68,7 @@ public class Person {
     this.role = role;
   }
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -73,6 +81,9 @@ public class Person {
     return Objects.equals(id, person.id) && Objects.equals(username,
         person.username) && Objects.equals(password, person.password)
         && Objects.equals(role, person.role);
+  }
+
+  public Person() {
   }
 }
 
