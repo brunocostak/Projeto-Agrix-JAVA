@@ -33,12 +33,7 @@ public class PersonController {
    */
   @PostMapping("/persons")
   public ResponseEntity<ResponsePersonDto> create(@RequestBody PersonDto personDto) {
-//    Person newPerson = personRepositorie.save(personDto.toPerson());
-//    return ResponseEntity.status(HttpStatus.CREATED).body(new ResponsePersonDto(
-//        newPerson.getId(),
-//        newPerson.getUsername(),
-//        newPerson.getRole()));
-//  }
+
     Person newPerson = personDto.toPerson();
     newPerson.setPassword(new BCryptPasswordEncoder().encode(newPerson.getPassword()));
     Person savedPerson = personRepositorie.save(newPerson);

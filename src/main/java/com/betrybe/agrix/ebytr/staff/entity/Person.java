@@ -96,6 +96,7 @@ public class Person implements UserDetails, GrantedAuthority {
   public Collection<Person> getAuthorities() {
     return List.of(this);
   }
+
   @Override
   public boolean isAccountNonExpired() {
     return true;

@@ -30,6 +30,9 @@ public class AuthController {
   private final PersonRepository personRepository;
   private final AuthenticationManager authenticationManager;
 
+  /**.
+   * AuthController constructor.
+   */
   public AuthController(TokenService tokenService, PersonRepository personRepository,
       AuthenticationManager authenticationManager) {
     this.tokenService = tokenService;

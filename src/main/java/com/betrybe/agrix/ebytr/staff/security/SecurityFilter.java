@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+/**
+ * SecurityFilter class.
+ */
 @Component
 public class SecurityFilter extends OncePerRequestFilter {
 
