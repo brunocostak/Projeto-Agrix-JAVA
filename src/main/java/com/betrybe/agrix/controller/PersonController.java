@@ -8,6 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,10 +33,18 @@ public class PersonController {
    */
   @PostMapping("/persons")
   public ResponseEntity<ResponsePersonDto> create(@RequestBody PersonDto personDto) {
-    Person newPerson = personRepositorie.save(personDto.toPerson());
+//    Person newPerson = personRepositorie.save(personDto.toPerson());
+//    return ResponseEntity.status(HttpStatus.CREATED).body(new ResponsePersonDto(
+//        newPerson.getId(),
+//        newPerson.getUsername(),
+//        newPerson.getRole()));
+//  }
+    Person newPerson = personDto.toPerson();
+    newPerson.setPassword(new BCryptPasswordEncoder().encode(newPerson.getPassword()));
+    Person savedPerson = personRepositorie.save(newPerson);
     return ResponseEntity.status(HttpStatus.CREATED).body(new ResponsePersonDto(
-        newPerson.getId(),
-        newPerson.getUsername(),
-        newPerson.getRole()));
+        savedPerson.getId(),
+        savedPerson.getUsername(),
+        savedPerson.getRole()));
   }
 }
